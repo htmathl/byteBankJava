@@ -30,6 +30,7 @@ public class Tela extends JFrame {
         entrarNaConta.setForeground(verde);
         criarConta.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
         entrarNaConta.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        eventos();
 
         panel.add(criarConta);
         panel.add(entrarNaConta);
@@ -41,5 +42,13 @@ public class Tela extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+    private void eventos() {
+        criarConta.addActionListener(e -> {
+            new CriarConta();
+        });
+        entrarNaConta.addActionListener(e -> {
+            new EntrarConta();
+        });
     }
 }

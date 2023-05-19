@@ -41,6 +41,15 @@ public class ContaCorrente {
     public double getSaldo() {
         return saldo;
     }
+
+    public int getNumeroAgencia() {
+        return numeroAgencia;
+    }
+
+    public String getConta() {
+        return conta;
+    }
+
     //É possível ter mais de um método construtor em uma classe
     public ContaCorrente(int numeroAgencia, String numeroConta, Cliente titular) {
         this.numeroAgencia = numeroAgencia;
