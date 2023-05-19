@@ -16,7 +16,7 @@ public class EntrarConta extends JFrame {
     JLabel txtSenha = new JLabel("Senha:", SwingConstants.CENTER);
     JTextField inpAgencia = new JTextField();
     JTextField inpConta = new JTextField();
-    JTextField inpSenha = new JTextField();
+    JPasswordField inpSenha = new JPasswordField(10);
     JButton entrar = new JButton("Vamos nessa!");
     public EntrarConta() {
         setLayout(new BorderLayout(20, 10));
@@ -38,6 +38,8 @@ public class EntrarConta extends JFrame {
             l.setForeground(verde);
             l.setFont(new Font("Verdana", Font.PLAIN, 16));
         }
+
+        inpSenha.setEchoChar('*');
 
         panel.add(txtAgencia); panel.add(inpAgencia);
         panel.add(txtConta); panel.add(inpConta);
@@ -82,7 +84,10 @@ public class EntrarConta extends JFrame {
                             if(Objects.equals(senha, c.getSenha())) {
                                 System.out.println("Entrou!");
                                 this.dispose();
-                                new TelaConta();
+                                new TelaConta(c);
+                                break;
+                            } else {
+                                JOptionPane.showMessageDialog(null, "** Confira se seu número de conta/CPF e senha estão corretos **\nDica: Se for entrar com CPF deve estar XXX.XXX.XXX-XX | para números de conta XXXX-X");
                                 break;
                             }
                         }

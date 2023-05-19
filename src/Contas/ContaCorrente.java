@@ -2,6 +2,8 @@ package Contas;
 
 import TItular.Cliente;
 
+import java.util.Objects;
+
 public class ContaCorrente {
     private static int totalDeContas;
     private int numeroAgencia;
@@ -19,9 +21,9 @@ public class ContaCorrente {
         }
         return false;
     }
-    public boolean tranferir(double valor, ContaCorrente destino) {
-        if (saldo >= valor)
-        {
+    public boolean tranferir(double valor, ContaCorrente origem, ContaCorrente destino) {
+        if(Objects.equals(origem.getConta(), destino.getConta())) return false;
+        if (saldo >= valor) {
             sacar(valor);
             destino.depositar(valor);
             return true;

@@ -25,7 +25,7 @@ public class CriarConta extends JFrame {
     JTextField inpNasc = new JTextField();
     JTextField inpEnd = new JTextField();
     JTextField inpProf = new JTextField();
-    JTextField inpSenha = new JTextField();
+    JPasswordField inpSenha = new JPasswordField(10);
     JPanel btnPanel = new JPanel();
     JButton criar = new JButton("Vamos nessa!");
     public CriarConta() {
@@ -48,6 +48,8 @@ public class CriarConta extends JFrame {
             l.setForeground(verde);
             l.setFont(new Font("Verdana", Font.PLAIN, 15));
         }
+
+        inpSenha.setEchoChar('*');
 
         panel.add(lblNome); panel.add(inpNome);
         panel.add(lblCpf); panel.add(inpCpf);
@@ -112,7 +114,7 @@ public class CriarConta extends JFrame {
 //                cl.setClientes(new Cliente(nome, CPF, nasc, end, prof));
 //                cl.getClientes();
 
-                Cliente novo = new Cliente(nome, CPF, nasc, end, prof);
+                Cliente novo = new Cliente(nome, CPF, prof, end, nasc);
 
                 int contaP = (int)(Math.random() * (99 - 10) + 10);
                 int contaM = (int)(Math.random() * (99 - 10) + 10);
