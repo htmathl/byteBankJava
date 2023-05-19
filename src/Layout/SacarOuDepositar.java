@@ -8,11 +8,11 @@ import java.awt.*;
 public class SacarOuDepositar extends JFrame {
     JLabel titulo = new JLabel("", SwingConstants.CENTER);
     JPanel panel = new JPanel();
-    JLabel txtQuanto = new JLabel("Valor (XXX,XX):", SwingConstants.CENTER);
+    JLabel txtQuanto = new JLabel("Valor (XXX.XX):", SwingConstants.CENTER);
     JTextField inpQuanto = new JTextField();
     JButton btnDepositar = new JButton("Depositar");
     JButton btnSacar = new JButton("Sacar");
-    public SacarOuDepositar(ContaCorrente c) {
+    public SacarOuDepositar(ContaCorrente c, JLabel ll) {
         setLayout(new BorderLayout(20, 10));
 
         Color verde = new Color(0,191,99);
@@ -44,10 +44,29 @@ public class SacarOuDepositar extends JFrame {
 
         add(panel);
 
+        eventos(c, ll);
         getContentPane().setBackground(new Color(000));
         setTitle("Saque e depósito!");
         setSize(700,200);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+    private void eventos(ContaCorrente c, JLabel ll) {
+        btnDepositar.addActionListener(e -> {
+            try {
+                double valor = Double.parseDouble(inpQuanto.getText());
+                c.depositar(valor);
+                String saldoS = String.valueOf(c.getSaldo());
+                titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
+                ll.setText(saldoS);
+            } catch (Exception ex) {}
+        });
+        btnSacar.addActionListener(e -> {
+            double valor = Double.parseDouble(inpQuanto.getText());
+            c.sacar(valor);
+            String saldoS = String.valueOf(c.getSaldo());
+            titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
+            ll.setText(saldoS);
+        });
     }
 }

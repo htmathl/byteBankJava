@@ -76,7 +76,10 @@ public class TelaConta extends JFrame {
             tela.dispose();
         });
         sacarDepo.addActionListener(e -> {
-            new SacarOuDepositar(c);
+            SacarOuDepositar sc = new SacarOuDepositar(c, dinheiro);
+        });
+        tranferir.addActionListener(e -> {
+            Transferir t = new Transferir(c, dinheiro);
         });
     }
 }

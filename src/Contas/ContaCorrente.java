@@ -11,18 +11,18 @@ public class ContaCorrente {
     private Cliente Titular;
     private double saldo = 0;
     private String senha;
-    private void depositar(double valor) {
+    public void depositar(double valor) {
             saldo += valor;
     }
-    private boolean sacar(double valor) {
+    public boolean sacar(double valor) {
         if(saldo >= valor) {
             saldo -= valor;
             return true;
         }
         return false;
     }
-    public boolean tranferir(double valor, ContaCorrente origem, ContaCorrente destino) {
-        if(Objects.equals(origem.getConta(), destino.getConta())) return false;
+    public boolean tranferir(double valor, ContaCorrente destino) {
+        if(Objects.equals(this.getConta(), destino.getConta())) return false;
         if (saldo >= valor) {
             sacar(valor);
             destino.depositar(valor);
