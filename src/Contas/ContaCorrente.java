@@ -8,7 +8,7 @@ public class ContaCorrente {
     private String conta;
     private Cliente Titular;
     private double saldo = 0;
-
+    private String senha;
     private void depositar(double valor) {
             saldo += valor;
     }
@@ -49,12 +49,17 @@ public class ContaCorrente {
     public String getConta() {
         return conta;
     }
+    public Cliente getTitular() { return Titular; }
+    public String getSenha() {
+        return senha;
+    }
 
     //É possível ter mais de um método construtor em uma classe
-    public ContaCorrente(int numeroAgencia, String numeroConta, Cliente titular) {
+    public ContaCorrente(int numeroAgencia, String numeroConta, Cliente titular, String senha) {
         this.numeroAgencia = numeroAgencia;
         this.conta = numeroConta;
         Titular = titular;
+        this.senha = senha;
         totalDeContas++;
     }
 }

@@ -3,20 +3,15 @@ package Layout;
 import Contas.ContaCorrente;
 import Contas.ContasCorrentes;
 import TItular.Cliente;
-import TItular.Clientes;
 
 import javax.swing.*;
-import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
 
 public class CriarConta extends JFrame {
-    public ArrayList<Cliente> cliente = new ArrayList<>();
     public ContasCorrentes correntes;
-    public Clientes clientes;
-    public ArrayList<ContaCorrente> ctArray = new ArrayList<>();
     JLabel titulo = new JLabel("Insira seus dados:", SwingConstants.CENTER);
     JPanel panel = new JPanel();
     JLabel lblNome = new JLabel("Nome:", SwingConstants.CENTER);
@@ -24,11 +19,13 @@ public class CriarConta extends JFrame {
     JLabel lblNasc = new JLabel("Data de nascimento(XX/XX/XXXX):", SwingConstants.CENTER);
     JLabel lblEnd = new JLabel("Endereço:", SwingConstants.CENTER);
     JLabel lblProf = new JLabel("Profissão:", SwingConstants.CENTER);
+    JLabel lblSenha = new JLabel("Senha:", SwingConstants.CENTER);
     JTextField inpNome = new JTextField();
     JTextField inpCpf = new JTextField();
     JTextField inpNasc = new JTextField();
     JTextField inpEnd = new JTextField();
     JTextField inpProf = new JTextField();
+    JTextField inpSenha = new JTextField();
     JPanel btnPanel = new JPanel();
     JButton criar = new JButton("Vamos nessa!");
     public CriarConta() {
@@ -41,12 +38,12 @@ public class CriarConta extends JFrame {
         titulo.setForeground(verde);
         add(BorderLayout.NORTH, titulo);
 
-        GridLayout grid = new GridLayout(5,2);
+        GridLayout grid = new GridLayout(6,2);
         grid.setVgap(5);
         panel.setLayout(grid);
         panel.setBackground(preto);
 
-        JLabel[] labels = {lblNome, lblCpf, lblNasc, lblEnd, lblProf};
+        JLabel[] labels = {lblNome, lblCpf, lblNasc, lblEnd, lblProf, lblSenha};
         for(JLabel l : labels) {
             l.setForeground(verde);
             l.setFont(new Font("Verdana", Font.PLAIN, 15));
@@ -57,6 +54,7 @@ public class CriarConta extends JFrame {
         panel.add(lblNasc); panel.add(inpNasc);
         panel.add(lblEnd); panel.add(inpEnd);
         panel.add(lblProf); panel.add(inpProf);
+        panel.add(lblSenha); panel.add(inpSenha);
 
         GridLayout grid2 = new GridLayout(1,1);
         btnPanel.setLayout(grid2);
@@ -70,7 +68,7 @@ public class CriarConta extends JFrame {
 
         getContentPane().setBackground(new Color(000));
         setTitle("Nova conta");
-        setSize(700,450);
+        setSize(700,470);
         setLocationRelativeTo(null);
         setVisible(true);
 
@@ -84,6 +82,7 @@ public class CriarConta extends JFrame {
                 String nasc = inpNasc.getText();
                 String end = inpEnd.getText();
                 String prof = inpProf.getText();
+                String senha = inpSenha.getText();
 
                 String[] conj = new String[]{ nome, CPF, nasc, end, prof };
                 for(String s : conj) {
@@ -114,16 +113,14 @@ public class CriarConta extends JFrame {
 //                cl.getClientes();
 
                 Cliente novo = new Cliente(nome, CPF, nasc, end, prof);
-                clientes = new Clientes(novo);
 
                 int contaP = (int)(Math.random() * (99 - 10) + 10);
                 int contaM = (int)(Math.random() * (99 - 10) + 10);
                 String[] ctSg = {"-X", "-0", "-M", "-K", "-9"};
                 String contaF = "" + contaM + contaP + ctSg[(int)(Math.random() * ctSg.length)];
-                ContaCorrente ct = new ContaCorrente(((int)(Math.random() * 12)), contaF, novo);
+                ContaCorrente ct = new ContaCorrente(((int)(Math.random() * 12)), contaF, novo, senha);
                 correntes = new ContasCorrentes(ct);
 
-                clientes.showClientes();
                 correntes.showContas();
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Esperamos que esteja bem, " + nome + ".\nConta Criada com sucesso!\n ** Lembre destes dados **\nNúmero da conta: " + ct.getConta() + "\nAgência: " + ct.getNumeroAgencia());
