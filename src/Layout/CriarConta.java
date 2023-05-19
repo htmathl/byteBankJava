@@ -110,10 +110,6 @@ public class CriarConta extends JFrame {
                     return;
                 }
 
-//                Cliente cl = new Cliente();
-//                cl.setClientes(new Cliente(nome, CPF, nasc, end, prof));
-//                cl.getClientes();
-
                 Cliente novo = new Cliente(nome, CPF, prof, end, nasc);
 
                 int contaP = (int)(Math.random() * (99 - 10) + 10);

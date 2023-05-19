@@ -78,6 +78,7 @@ public class EntrarConta extends JFrame {
                     JOptionPane.showMessageDialog(null, "Está conta não existe!");
                     return;
                 };
+                int i = 0;
                 for (ContaCorrente c : correntes.getContaCorrentes()) {
                     if(Objects.equals(conta, c.getConta()) || Objects.equals(conta, c.getTitular().getCpf())) {
                         if(agencia == c.getNumeroAgencia()) {
@@ -86,15 +87,14 @@ public class EntrarConta extends JFrame {
                                 this.dispose();
                                 new TelaConta(c);
                                 break;
-                            } else {
+                            } else if( i >= correntes.getContaCorrentes().size() ) {
                                 JOptionPane.showMessageDialog(null, "** Confira se seu número de conta/CPF e senha estão corretos **\nDica: Se for entrar com CPF deve estar XXX.XXX.XXX-XX | para números de conta XXXX-X");
-                                break;
                             }
                         }
-                    } else {
+                    } else if( i >= correntes.getContaCorrentes().size() ) {
                         JOptionPane.showMessageDialog(null, "** Confira se seu número de conta/CPF e senha estão corretos **\nDica: Se for entrar com CPF deve estar XXX.XXX.XXX-XX | para números de conta XXXX-X");
-                        break;
                     }
+                    i++;
                 }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Coloque uma agência válida");
