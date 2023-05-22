@@ -4,6 +4,7 @@ import Contas.ContaCorrente;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.DecimalFormat;
 
 public class TelaConta extends JFrame {
     JLabel titulo = new JLabel("", SwingConstants.CENTER);
@@ -45,7 +46,7 @@ public class TelaConta extends JFrame {
         }
 
         numConta.setText(c.getNumeroAgencia() + " " + c.getConta());
-        String saldoS = String.valueOf(c.getSaldo());
+        String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
         dinheiro.setText("R$ " + String.join(",",saldoS.split("\\.")));
 
         panel.add(numConta); panel.add(dinheiro); panel.add(maisInfo);
@@ -59,6 +60,7 @@ public class TelaConta extends JFrame {
         setTitle("Boas vindas!");
         setSize(700,200);
         setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true);
     }
     private void eventos(ContaCorrente c, TelaConta tela) {

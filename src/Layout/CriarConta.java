@@ -72,6 +72,7 @@ public class CriarConta extends JFrame {
         setTitle("Nova conta");
         setSize(700,470);
         setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true);
 
         criarConta();
@@ -108,6 +109,18 @@ public class CriarConta extends JFrame {
                 if(numCpf < 14 || ponto < 3 || traco < 2) {
                     JOptionPane.showMessageDialog(null, "CPF inválido");
                     return;
+                }
+                //validar cpf existente
+                correntes = new ContasCorrentes();
+                ArrayList<ContaCorrente> ac = new ArrayList<>();
+                ac = correntes.getContaCorrentes();
+                if(ac.size() > 0) {
+                    for(ContaCorrente cc : ac) {
+                        if(Objects.equals(cc.getTitular().getCpf(), CPF)) {
+                            JOptionPane.showMessageDialog(null, "Este CPF já está cadastrado em nosso banco!");
+                            return;
+                        }
+                    }
                 }
 
                 Cliente novo = new Cliente(nome, CPF, prof, end, nasc);

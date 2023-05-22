@@ -5,6 +5,7 @@ import Contas.ContasCorrentes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class Transferir extends JFrame {
@@ -25,7 +26,7 @@ public class Transferir extends JFrame {
 
         titulo.setFont(new Font("Comic Sans MS", Font.PLAIN, 35));
         titulo.setForeground(verde);
-        String saldoS = String.valueOf(c.getSaldo());
+        String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
         titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
         add(BorderLayout.NORTH, titulo);
 
@@ -58,6 +59,7 @@ public class Transferir extends JFrame {
         setTitle("Transferência!");
         setSize(700,300);
         setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true);
     }
     public void eventos(ContaCorrente c, JLabel ll) {
@@ -74,7 +76,7 @@ public class Transferir extends JFrame {
                             if(c.tranferir(valor, cc)) {
                                 this.dispose();
                                 JOptionPane.showMessageDialog(null, "Valor transferido!");
-                                String saldoS = String.valueOf(c.getSaldo());
+                                String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
                                 titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
                                 ll.setText(saldoS);
                             } else {
@@ -88,7 +90,7 @@ public class Transferir extends JFrame {
         });
     }
     public String atualizaDado(ContaCorrente c) {
-        String saldoS = String.valueOf(c.getSaldo());
+        String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
         String titulo = "R$ " + String.join(",",saldoS.split("\\."));
         return titulo;
     }

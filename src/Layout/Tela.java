@@ -39,6 +39,7 @@ public class Tela extends JFrame {
         getContentPane().setBackground(new Color(000));
         setTitle("Byte Bank");
         setSize(700,300);
+        setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);

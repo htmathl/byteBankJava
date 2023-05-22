@@ -58,6 +58,7 @@ public class EntrarConta extends JFrame {
         setTitle("Tudo pronto para você");
         setSize(700,300);
         setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true);
     }
 

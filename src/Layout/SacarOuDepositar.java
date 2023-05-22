@@ -4,6 +4,7 @@ import Contas.ContaCorrente;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.DecimalFormat;
 
 public class SacarOuDepositar extends JFrame {
     JLabel titulo = new JLabel("", SwingConstants.CENTER);
@@ -20,7 +21,7 @@ public class SacarOuDepositar extends JFrame {
 
         titulo.setFont(new Font("Comic Sans MS", Font.PLAIN, 35));
         titulo.setForeground(verde);
-        String saldoS = String.valueOf(c.getSaldo());
+        String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
         titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
         add(BorderLayout.NORTH, titulo);
 
@@ -48,6 +49,7 @@ public class SacarOuDepositar extends JFrame {
         getContentPane().setBackground(new Color(000));
         setTitle("Saque e depósito!");
         setSize(700,200);
+        setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -56,7 +58,7 @@ public class SacarOuDepositar extends JFrame {
             try {
                 double valor = Double.parseDouble(inpQuanto.getText());
                 c.depositar(valor);
-                String saldoS = String.valueOf(c.getSaldo());
+                String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
                 titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
                 ll.setText(saldoS);
             } catch (Exception ex) {}
@@ -64,7 +66,7 @@ public class SacarOuDepositar extends JFrame {
         btnSacar.addActionListener(e -> {
             double valor = Double.parseDouble(inpQuanto.getText());
             c.sacar(valor);
-            String saldoS = String.valueOf(c.getSaldo());
+            String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
             titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
             ll.setText(saldoS);
         });
