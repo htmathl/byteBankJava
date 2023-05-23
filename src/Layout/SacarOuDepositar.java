@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 public class SacarOuDepositar extends JFrame {
     JLabel titulo = new JLabel("", SwingConstants.CENTER);
     JPanel panel = new JPanel();
-    JLabel txtQuanto = new JLabel("Valor (XXX.XX):", SwingConstants.CENTER);
+    JLabel txtQuanto = new JLabel("Valor:", SwingConstants.CENTER);
     JTextField inpQuanto = new JTextField();
     JButton btnDepositar = new JButton("Depositar");
     JButton btnSacar = new JButton("Sacar");
@@ -56,19 +56,24 @@ public class SacarOuDepositar extends JFrame {
     private void eventos(ContaCorrente c, JLabel ll) {
         btnDepositar.addActionListener(e -> {
             try {
-                double valor = Double.parseDouble(inpQuanto.getText());
+                String valorFormatado = inpQuanto.getText().contains(",") ? String.join(".",inpQuanto.getText().split(",")) : inpQuanto.getText();
+                double valor = Double.parseDouble(valorFormatado);
                 c.depositar(valor);
                 String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
                 titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
                 ll.setText(saldoS);
-            } catch (Exception ex) {}
+
+            } catch (Exception ex) { JOptionPane.showMessageDialog(null, "Valor precisa ser válido"); }
         });
         btnSacar.addActionListener(e -> {
-            double valor = Double.parseDouble(inpQuanto.getText());
-            c.sacar(valor);
-            String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
-            titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
-            ll.setText(saldoS);
+            try {
+                String valorFormatado = inpQuanto.getText().contains(",") ? String.join(".",inpQuanto.getText().split(",")) : inpQuanto.getText();
+                double valor = Double.parseDouble(valorFormatado);
+                c.sacar(valor);
+                String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
+                titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
+                ll.setText(saldoS);
+            } catch (Exception ex) { JOptionPane.showMessageDialog(null, "Valor precisa ser válido"); }
         });
     }
 }

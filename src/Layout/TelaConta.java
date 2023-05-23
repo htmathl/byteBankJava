@@ -74,14 +74,8 @@ public class TelaConta extends JFrame {
                              "Endereço: " + c.getTitular().getEndereco() +"\n" +
                              "Profissão: " + c.getTitular().getProfissao());
         });
-        sair.addActionListener(e -> {
-            tela.dispose();
-        });
-        sacarDepo.addActionListener(e -> {
-            new SacarOuDepositar(c, dinheiro);
-        });
-        tranferir.addActionListener(e -> {
-            new Transferir(c, dinheiro);
-        });
+        sair.addActionListener(e -> tela.dispose());
+        sacarDepo.addActionListener(e -> new SacarOuDepositar(c, dinheiro));
+        tranferir.addActionListener(e -> new Transferir(c, dinheiro));
     }
 }

@@ -7,6 +7,7 @@ import TItular.Cliente;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -106,13 +107,13 @@ public class CriarConta extends JFrame {
                 int ponto = CPF.split("\\.").length;
                 int traco = CPF.split("-").length;
                 int numCpf = CPF.split("").length;
-                if(numCpf < 14 || ponto < 3 || traco < 2) {
+                if(numCpf != 14 || ponto != 3 || traco != 2 || validaNumsCPF(CPF) || CPF.split("-")[1].length() != 2) {
                     JOptionPane.showMessageDialog(null, "CPF inválido");
                     return;
                 }
                 //validar cpf existente
                 correntes = new ContasCorrentes();
-                ArrayList<ContaCorrente> ac = new ArrayList<>();
+                ArrayList<ContaCorrente> ac;
                 ac = correntes.getContaCorrentes();
                 if(ac.size() > 0) {
                     for(ContaCorrente cc : ac) {
@@ -140,5 +141,11 @@ public class CriarConta extends JFrame {
                 JOptionPane.showMessageDialog(null, "Insira uma data válida!");
             }
         });
+    }
+    private boolean validaNumsCPF(String CPF) {
+        for(String cp : CPF.split("-")[0].split("\\.")) {
+            if(cp.length() != 3) { return true; }
+        }
+        return false;
     }
 }
