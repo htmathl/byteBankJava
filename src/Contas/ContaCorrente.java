@@ -6,11 +6,11 @@ import java.util.Objects;
 
 public class ContaCorrente {
     private static int totalDeContas;
-    private int numeroAgencia;
-    private String conta;
-    private Cliente Titular;
+    private final int numeroAgencia;
+    private final String conta;
+    private final Cliente Titular;
     private double saldo = 0;
-    private String senha;
+    private final String senha;
     public void depositar(double valor) {
             saldo += valor;
     }
@@ -30,16 +30,12 @@ public class ContaCorrente {
         }
         return false;
     }
-    public void mostrar() {
-        //Console.WriteLine(Titular);
-        //Console.WriteLine(numeroAgencia);
-        //Console.WriteLine(Conta);
-        //Console.WriteLine(saldo);
-    }
-    public void setSaldo(double valor) {
-        if (valor < 0) return;
-        saldo = valor;
-    }
+//    public void mostrar() {
+//        //Console.WriteLine(Titular);
+//        //Console.WriteLine(numeroAgencia);
+//        //Console.WriteLine(Conta);
+//        //Console.WriteLine(saldo);
+//    }
     public double getSaldo() {
         return saldo;
     }

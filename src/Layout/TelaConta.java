@@ -19,7 +19,7 @@ public class TelaConta extends JFrame {
         setLayout(new BorderLayout(20, 10));
 
         Color verde = new Color(0,191,99);
-        Color preto = new Color(000);
+        Color preto = new Color(0);
 
         titulo.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
         titulo.setForeground(verde);
@@ -56,7 +56,7 @@ public class TelaConta extends JFrame {
 
         eventos(c, this);
 
-        getContentPane().setBackground(new Color(000));
+        getContentPane().setBackground(new Color(0));
         setTitle("Boas vindas!");
         setSize(700,200);
         setLocationRelativeTo(null);

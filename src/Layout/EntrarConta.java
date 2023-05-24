@@ -5,7 +5,6 @@ import Contas.ContasCorrentes;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class EntrarConta extends JFrame {
@@ -22,7 +21,7 @@ public class EntrarConta extends JFrame {
         setLayout(new BorderLayout(20, 10));
 
         Color verde = new Color(0,191,99);
-        Color preto = new Color(000);
+        Color preto = new Color(0);
 
         titulo.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
         titulo.setForeground(verde);
@@ -54,7 +53,7 @@ public class EntrarConta extends JFrame {
         add(BorderLayout.SOUTH, entrar);
         entrarF();
 
-        getContentPane().setBackground(new Color(000));
+        getContentPane().setBackground(new Color(0));
         setTitle("Tudo pronto para você");
         setSize(700,300);
         setLocationRelativeTo(null);

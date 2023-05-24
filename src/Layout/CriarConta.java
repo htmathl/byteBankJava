@@ -7,7 +7,6 @@ import TItular.Cliente;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -33,7 +32,7 @@ public class CriarConta extends JFrame {
         setLayout(new BorderLayout(20, 10));
 
         Color verde = new Color(0,191,99);
-        Color preto = new Color(000);
+        Color preto = new Color(0);
 
         titulo.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
         titulo.setForeground(verde);
@@ -69,7 +68,7 @@ public class CriarConta extends JFrame {
         add(BorderLayout.CENTER, panel);
         add(BorderLayout.SOUTH, btnPanel);
 
-        getContentPane().setBackground(new Color(000));
+        getContentPane().setBackground(new Color(0));
         setTitle("Nova conta");
         setSize(700,470);
         setLocationRelativeTo(null);
@@ -129,7 +128,7 @@ public class CriarConta extends JFrame {
                 int contaP = (int)(Math.random() * (99 - 10) + 10);
                 int contaM = (int)(Math.random() * (99 - 10) + 10);
                 String[] ctSg = {"-X", "-0", "-M", "-K", "-9"};
-                String contaF = "" + contaM + contaP + ctSg[(int)(Math.random() * ctSg.length)];
+                String contaF = String.valueOf(contaM) + contaP + ctSg[(int)(Math.random() * ctSg.length)];
                 ContaCorrente ct = new ContaCorrente(((int)(Math.random() * 12)), contaF, novo, senha);
                 correntes = new ContasCorrentes(ct);
 

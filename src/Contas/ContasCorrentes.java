@@ -3,7 +3,7 @@ package Contas;
 import java.util.ArrayList;
 
 public class ContasCorrentes {
-    private static ArrayList<ContaCorrente> contaCorrentes = new ArrayList<>();
+    private static final ArrayList<ContaCorrente> contaCorrentes = new ArrayList<>();
     public ArrayList<ContaCorrente> getContaCorrentes() {
         return contaCorrentes;
     }

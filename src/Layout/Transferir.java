@@ -22,7 +22,7 @@ public class Transferir extends JFrame {
         setLayout(new BorderLayout(20, 10));
 
         Color verde = new Color(0,191,99);
-        Color preto = new Color(000);
+        Color preto = new Color(0);
 
         titulo.setFont(new Font("Comic Sans MS", Font.PLAIN, 35));
         titulo.setForeground(verde);
@@ -55,7 +55,7 @@ public class Transferir extends JFrame {
 
         eventos(c, ll);
 
-        getContentPane().setBackground(new Color(000));
+        getContentPane().setBackground(new Color(0));
         setTitle("Transferência!");
         setSize(700,300);
         setLocationRelativeTo(null);
@@ -67,7 +67,8 @@ public class Transferir extends JFrame {
             try{
                 int agencia = Integer.parseInt(inpAgencia.getText());
                 String conta = inpConta.getText();
-                double valor = Double.parseDouble(inpValor.getText());
+                String valorFormatado = inpValor.getText().contains(",") ? String.join(".",inpValor.getText().split(",")) : inpValor.getText();
+                double valor = Double.parseDouble(valorFormatado);
 
                 ContasCorrentes correntes = new ContasCorrentes();
                 for(ContaCorrente cc : correntes.getContaCorrentes()) {
@@ -77,8 +78,9 @@ public class Transferir extends JFrame {
                                 this.dispose();
                                 JOptionPane.showMessageDialog(null, "Valor transferido!");
                                 String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
-                                titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
-                                ll.setText(saldoS);
+                                String saldoFinal = "R$ " + String.join(",", saldoS.split("\\."));
+                                titulo.setText(saldoFinal);
+                                ll.setText(saldoFinal);
                             } else {
                                 JOptionPane.showMessageDialog(null, "Saldo insuficiente!");
                             }
@@ -86,12 +88,7 @@ public class Transferir extends JFrame {
                     }
                 }
 
-            } catch (Exception ex) {}
+            } catch (Exception ignored) {}
         });
-    }
-    public String atualizaDado(ContaCorrente c) {
-        String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
-        String titulo = "R$ " + String.join(",",saldoS.split("\\."));
-        return titulo;
     }
 }

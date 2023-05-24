@@ -17,7 +17,7 @@ public class SacarOuDepositar extends JFrame {
         setLayout(new BorderLayout(20, 10));
 
         Color verde = new Color(0,191,99);
-        Color preto = new Color(000);
+        Color preto = new Color(0);
 
         titulo.setFont(new Font("Comic Sans MS", Font.PLAIN, 35));
         titulo.setForeground(verde);
@@ -46,7 +46,7 @@ public class SacarOuDepositar extends JFrame {
         add(panel);
 
         eventos(c, ll);
-        getContentPane().setBackground(new Color(000));
+        getContentPane().setBackground(new Color(0));
         setTitle("Saque e depósito!");
         setSize(700,200);
         setResizable(false);
@@ -60,8 +60,9 @@ public class SacarOuDepositar extends JFrame {
                 double valor = Double.parseDouble(valorFormatado);
                 c.depositar(valor);
                 String saldoS = String.valueOf(new DecimalFormat("0.00").format(c.getSaldo()));
-                titulo.setText("R$ " + String.join(",",saldoS.split("\\.")));
-                ll.setText(saldoS);
+                String saldoFinal = "R$ " + String.join(",", saldoS.split("\\."));
+                titulo.setText(saldoFinal);
+                ll.setText(saldoFinal);
 
             } catch (Exception ex) { JOptionPane.showMessageDialog(null, "Valor precisa ser válido"); }
         });
